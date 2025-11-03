@@ -35,21 +35,21 @@ flowchart TD
   Puppet[Puppet Manifests / Hiera] --> A1
   Legacy[Legacy Ansible Playbooks] --> A1
 
-  A1 -- discovery.json --> Bus[(ai-pipeline/exchanges/*.json)]
+  A1 -- discovery.json --> Bus[(ai-pipeline/exchanges)]
   A1 -. index .-> RAG[(Vector DB)]
 
-  Bus -- inputs --> A2[Agent 02: Convert (source → draft roles)]
-  A2 -- draft roles/playbooks --> DRAFT[02-ansible-draft/]
+  Bus -- inputs --> A2[Agent 02: Convert - source to draft roles]
+  A2 -- draft roles and playbooks --> DRAFT[02-ansible-draft/]
   A2 -. index .-> RAG
 
   DRAFT --> A3[Agent 03: AAP Normaliser]
   A3 -- collection, inventories, controller yaml --> PROD[03-aap/]
 
-  PROD --> A4[Agent 04: Security/Lint]
+  PROD --> A4[Agent 04: Security and Lint]
   A4 -- reports --> Reports[02-ansible-draft/reports/]
 
-  PROD --> A5[Agent 05: Docs + Controller Packager]
-  A5 -- PRs & bundles --> Gate[Promotion Gate (Human Review)]
+  PROD --> A5[Agent 05: Docs and Controller Packager]
+  A5 -- PRs and bundles --> Gate[Promotion Gate Human Review]
   Reports --> Gate
 
   Gate -- approve --> PROD
@@ -63,35 +63,35 @@ sequenceDiagram
   participant D as Agent 01 Discovery
   participant C as Agent 02 Converter
   participant N as Agent 03 Normaliser
-  participant S as Agent 04 Security/Lint
+  participant S as Agent 04 Security and Lint
   participant P as Agent 05 Packager
   participant Bus as Exchanges JSON
   participant RAG as Vector DB
-  participant Git as Git (02-draft / 03-aap)
+  participant Git as Git lanes 02 and 03
 
   D->>Bus: write discovery.json
-  D-->>RAG: index discovery artifacts
+  D->>RAG: index discovery artifacts
   C->>Bus: read discovery.json
-  C->>Git: write 02-ansible-draft roles/playbooks
-  C-->>RAG: index draft changes
+  C->>Git: write 02-ansible-draft roles and playbooks
+  C->>RAG: index draft changes
   N->>Git: read 02; write AAP collection to 03-aap
-  S->>Git: lint 03-aap; write reports → 02-ansible-draft/reports
+  S->>Git: lint 03-aap; write reports to 02-ansible-draft/reports
   P->>Git: generate controller YAML, docs; open PR
-  Dev->>Git: review PR (promotion 02→03)
-  Dev-->>Bus: approval or change-request event
-  Git-->>RAG: index promoted content
+  Dev->>Git: review PR (promotion 02 to 03)
+  Dev->>Bus: approval or change-request event
+  Git->>RAG: index promoted content
 ```
 
 ### Components and quality gates
 ```mermaid
 flowchart LR
   subgraph StaticAnalysis
-    TS[tree-sitter parsers\n(Chef/Puppet/Ansible)]
-    YAML[YAML Schemas\n(JSON Schema)]
+    TS[tree-sitter parsers<br/>Chef, Puppet, Ansible]
+    YAML[YAML Schemas<br/>JSON Schema]
     Lint[ansible-lint]
-    SecScan[Secret Scanners\n(truffleHog/gitleaks)]
-    Policy[Policy Engine\n(OPA/Rego)]
-    Semgrep[Semgrep (YAML & code)]
+    SecScan[Secret Scanners<br/>truffleHog, gitleaks]
+    Policy[Policy Engine<br/>OPA/Rego]
+    Semgrep[Semgrep<br/>YAML and code]
   end
 
   Agents[Multi-Agent Orchestrator] --> StaticAnalysis
