@@ -74,11 +74,15 @@ sequenceDiagram
   C->>Bus: read discovery.json
   C->>Git: write 02-ansible-draft roles and playbooks
   C->>RAG: index draft changes
-  N->>Git: read 02; write AAP collection to 03-aap
-  S->>Git: lint 03-aap; write reports to 02-ansible-draft/reports
-  P->>Git: generate controller YAML, docs; open PR
-  Dev->>Git: review PR (promotion 02 to 03)
-  Dev->>Bus: approval or change-request event
+  N->>Git: read 02
+  N->>Git: write AAP collection to 03-aap
+  S->>Git: lint 03-aap
+  S->>Git: write reports to 02-ansible-draft/reports
+  P->>Git: generate controller YAML and docs
+  P->>Git: open PR
+  Dev->>Git: review PR for promotion 02 to 03
+  Dev->>Bus: approval event
+  Dev->>Bus: change request event
   Git->>RAG: index promoted content
 ```
 
