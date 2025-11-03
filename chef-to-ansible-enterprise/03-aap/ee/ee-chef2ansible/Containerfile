@@ -1,0 +1,4 @@
+FROM quay.io/ansible/creator-ee:latest
+USER root
+RUN echo "EE layer for Chef→Ansible conversion"
+USER 1000

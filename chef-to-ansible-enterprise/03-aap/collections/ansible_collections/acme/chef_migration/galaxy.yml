@@ -1,0 +1,14 @@
+namespace: acme
+name: chef_migration
+version: 0.1.0
+readme: README.md
+description: Collection for Chef→Ansible migration artifacts
+license: MIT
+authors:
+  - ACME DevOps Team
+tags:
+  - migration
+  - ansible
+  - chef
+repository: https://example.com/acme/chef-to-ansible-enterprise
+dependencies: {}

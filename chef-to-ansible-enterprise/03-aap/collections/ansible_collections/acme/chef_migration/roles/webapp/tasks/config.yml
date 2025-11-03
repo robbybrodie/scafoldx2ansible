@@ -1,0 +1,13 @@
+---
+- name: Create configuration directory
+  ansible.builtin.file:
+    path: "{{ webapp_config_path | dirname }}"
+    state: directory
+    mode: "0755"
+
+- name: Deploy configuration template
+  ansible.builtin.template:
+    src: webapp.conf.j2
+    dest: "{{ webapp_config_path }}"
+    mode: "0644"
+  notify: Restart webapp service

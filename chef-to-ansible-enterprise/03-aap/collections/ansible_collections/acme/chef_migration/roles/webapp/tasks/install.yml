@@ -1,0 +1,6 @@
+---
+- name: Ensure webapp package is installed
+  ansible.builtin.package:
+    name: "{{ webapp_pkg_name }}"
+    state: present
+  tags: ["webapp", "install"]

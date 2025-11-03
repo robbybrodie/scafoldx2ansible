@@ -1,0 +1,7 @@
+---
+name: Agent 02 – Chef→Ansible Converter
+inputs:
+  - path: ai-pipeline/runs/<timestamp>/discovery.json
+outputs:
+  - path: 02-ansible-draft/
+may_overwrite: true

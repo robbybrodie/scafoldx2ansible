@@ -1,0 +1,6 @@
+---
+- name: Ensure service is enabled and started
+  ansible.builtin.service:
+    name: "{{ webapp_service_name }}"
+    state: started
+    enabled: true

@@ -1,0 +1,7 @@
+---
+name: Agent 04 – Security/Lint
+inputs:
+  - path: 03-aap/
+outputs:
+  - path: 02-ansible-draft/reports/
+may_overwrite: true

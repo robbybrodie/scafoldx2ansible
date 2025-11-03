@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AAP Export",
+  "type": "object",
+  "properties": {
+    "projects": {"type": "array"},
+    "job_templates": {"type": "array"},
+    "inventories": {"type": "array"}
+  }
+}

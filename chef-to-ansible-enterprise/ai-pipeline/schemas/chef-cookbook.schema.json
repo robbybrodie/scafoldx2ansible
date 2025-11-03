@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Chef Cookbook",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string"},
+    "recipes": {"type": "array", "items": {"type": "string"}},
+    "attributes": {"type": "object"}
+  },
+  "required": ["name"]
+}

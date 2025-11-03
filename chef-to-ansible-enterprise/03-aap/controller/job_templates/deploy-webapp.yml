@@ -1,0 +1,13 @@
+---
+name: "Deploy WebApp (chef_migration)"
+job_type: run
+inventory: "Prod Inventory"
+project: "Chef Migration Project"
+playbook: "collections/ansible_collections/acme/chef_migration/playbooks/deploy_webapp.yml"
+execution_environment: "ee-app-runtime"
+credentials:
+  - "ACME SSH"
+survey_enabled: true
+labels:
+  - "chef-migrated"
+  - "webapp"

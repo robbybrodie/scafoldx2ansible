@@ -1,0 +1,28 @@
+name: Validate Ansible
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Ansible tooling
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible-core ansible-lint
+      - name: ansible-lint (03-aap/**)
+        run: |
+          ansible-lint 03-aap || true
+      - name: Build collection
+        working-directory: 03-aap/collections/ansible_collections/acme/chef_migration
+        run: |
+          ansible-galaxy collection build -v
+      - name: Playbook syntax check
+        run: |
+          ansible-playbook --syntax-check 03-aap/collections/ansible_collections/acme/chef_migration/playbooks/*.yml

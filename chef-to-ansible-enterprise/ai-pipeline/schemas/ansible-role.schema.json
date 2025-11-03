@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ansible Role",
+  "type": "object",
+  "properties": {
+    "defaults": {"type": "object"},
+    "tasks": {"type": "array", "items": {"type": "object"}},
+    "handlers": {"type": "array", "items": {"type": "object"}}
+  },
+  "required": ["tasks"]
+}

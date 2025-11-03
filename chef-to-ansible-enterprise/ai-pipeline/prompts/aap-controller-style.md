@@ -1,0 +1,3 @@
+- Minimal job_template fields
+- Reference collection playbooks
+- Pin execution environments

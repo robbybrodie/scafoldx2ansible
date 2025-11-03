@@ -1,0 +1,4 @@
+- Variable-first
+- Idempotent tasks
+- Use handlers for restarts
+- Prefer include_tasks and small files

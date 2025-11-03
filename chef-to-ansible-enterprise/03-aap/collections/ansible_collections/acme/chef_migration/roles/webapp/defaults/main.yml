@@ -1,0 +1,6 @@
+---
+webapp_pkg_name: "acme-webapp"
+webapp_pkg_version: "1.2.3"
+webapp_config_path: "/etc/webapp/webapp.conf"
+webapp_service_name: "webapp"
+webapp_listen_port: 8080

@@ -1,0 +1,2 @@
+- List cookbooks, recipes, attributes, templates, files, services
+- Flag non-idempotent resources

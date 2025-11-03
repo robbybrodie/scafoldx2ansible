@@ -1,0 +1,7 @@
+---
+name: Agent 03 – AAP Normaliser
+inputs:
+  - path: 02-ansible-draft/
+outputs:
+  - path: 03-aap/collections/ansible_collections/acme/chef_migration/
+may_overwrite: false

@@ -1,0 +1,8 @@
+---
+name: Agent 05 – Doc+Controller Packager
+inputs:
+  - path: 03-aap/
+outputs:
+  - path: 03-aap/controller/
+  - path: docs/
+may_overwrite: false

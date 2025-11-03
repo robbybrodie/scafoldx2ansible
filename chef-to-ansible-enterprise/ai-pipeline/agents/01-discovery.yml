@@ -1,0 +1,7 @@
+---
+name: Agent 01 – Discovery
+inputs:
+  - path: 01-chef-src/
+outputs:
+  - path: ai-pipeline/runs/<timestamp>/discovery.json
+may_overwrite: false
